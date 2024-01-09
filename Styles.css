@@ -39,3 +39,8 @@ button {
     font-weight: 800;
     font-size: 2rem;
 }
+
+#start{
+    display: flex;
+    justify-content: center;
+}
