@@ -29,21 +29,31 @@ function isVictory(a, b){
     }
 }
 
-function playRound(){
-    let playerChoice = prompt("Choose between rock, paper, and scissors!");
+function playRound(playerChoice){
+    
     let computerChoice = getComputerChoice();
 
-    playerChoice = playerChoice.toLowerCase(); 
+    let resultMessage = '';
+    let scoreMessage = "The scores are: " + playerScore + " points for the player and " + computerScore + " for the computer"
 
     if(playerChoice == computerChoice){
-        console.log("It's a draw! The computer also chose " + computerChoice);
+        resultMessage = "It's a draw! The computer also chose " + computerChoice;
+        scoreMessage = "The scores are: " + playerScore + " points for the player and " + computerScore + " for the computer"
     } else if (isVictory(playerChoice, computerChoice)){
-        console.log("You win! " + playerChoice + " beats " + computerChoice);
+        resultMessage = "You win! " + playerChoice + " beats " + computerChoice;
         playerScore ++;
+        scoreMessage = "The scores are: " + playerScore + " points for the player and " + computerScore + " for the computer"
     } else {
-        console.log("You lose! " + computerChoice + " beats " + playerChoice);
+        resultMessage = "You lose! " + computerChoice + " beats " + playerChoice;
         computerScore ++;
+        scoreMessage = "The scores are: " + playerScore + " points for the player and " + computerScore + " for the computer"
     }
+
+    const resultElement = document.getElementById("result");
+    resultElement.textContent = resultMessage;
+
+    const scoreElement = document.getElementById("score");
+    scoreElement.textContent = scoreMessage;
 
     console.log("The scores are: " + playerScore + " points for the player and " + computerScore + " for the computer")
 }
@@ -60,4 +70,21 @@ function game(){
     }
 }
 
-game();
+const rockButton = document.getElementById("rock");
+const paperButton = document.getElementById("paper");
+const scissorsButton = document.getElementById("scissors");
+
+rockButton.addEventListener('click', function(e){
+    playRound('rock');
+});
+
+paperButton.addEventListener('click', function(e){
+    playRound('paper');
+});
+
+scissorsButton.addEventListener('click', function(e){
+    playRound('scissors');
+});
+
+
+/* game(); */
